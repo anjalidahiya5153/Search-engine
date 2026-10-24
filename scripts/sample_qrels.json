@@ -1,0 +1,82 @@
+[
+  {
+    "query": "machine learning from data",
+    "relevant": ["doc_001", "doc_002", "doc_046"]
+  },
+  {
+    "query": "how do neural networks work",
+    "relevant": ["doc_002", "doc_007", "doc_027"]
+  },
+  {
+    "query": "natural language processing applications",
+    "relevant": ["doc_003", "doc_007", "doc_047", "doc_048"]
+  },
+  {
+    "query": "search engine ranking algorithms",
+    "relevant": ["doc_004", "doc_005", "doc_014", "doc_045"]
+  },
+  {
+    "query": "BM25 term frequency ranking",
+    "relevant": ["doc_005", "doc_014", "doc_004"]
+  },
+  {
+    "query": "sentence embeddings semantic similarity",
+    "relevant": ["doc_008", "doc_006", "doc_026", "doc_028"]
+  },
+  {
+    "query": "fast approximate nearest neighbour search",
+    "relevant": ["doc_009", "doc_035"]
+  },
+  {
+    "query": "combining lexical and semantic search",
+    "relevant": ["doc_010", "doc_035", "doc_004"]
+  },
+  {
+    "query": "kafka distributed streaming pipeline",
+    "relevant": ["doc_011", "doc_033", "doc_039"]
+  },
+  {
+    "query": "redis caching query results",
+    "relevant": ["doc_012", "doc_032"]
+  },
+  {
+    "query": "inverted index posting lists",
+    "relevant": ["doc_013", "doc_004", "doc_031"]
+  },
+  {
+    "query": "docker containerisation microservices",
+    "relevant": ["doc_016", "doc_040"]
+  },
+  {
+    "query": "REST API design fastapi",
+    "relevant": ["doc_017", "doc_018"]
+  },
+  {
+    "query": "NDCG MRR recall evaluation metrics",
+    "relevant": ["doc_019", "doc_025", "doc_042"]
+  },
+  {
+    "query": "index sharding horizontal scaling",
+    "relevant": ["doc_020", "doc_015", "doc_032"]
+  },
+  {
+    "query": "transformer BERT attention mechanism",
+    "relevant": ["doc_007", "doc_027", "doc_029"]
+  },
+  {
+    "query": "retrieval augmented generation RAG",
+    "relevant": ["doc_030", "doc_003", "doc_029"]
+  },
+  {
+    "query": "sparse dense retrieval comparison",
+    "relevant": ["doc_035", "doc_010", "doc_006"]
+  },
+  {
+    "query": "learning to rank pointwise pairwise",
+    "relevant": ["doc_045", "doc_042", "doc_019"]
+  },
+  {
+    "query": "large language models GPT Claude",
+    "relevant": ["doc_029", "doc_038", "doc_007"]
+  }
+]

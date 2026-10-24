@@ -15,12 +15,15 @@ from typing import List, Dict, Any
 
 import numpy as np
 from kafka import KafkaConsumer
-from kafka.errors import KafkaError
+import redis
 
 from config.settings import (
     KAFKA_BOOTSTRAP_SERVERS,
     KAFKA_TOPIC_RAW,
     KAFKA_CONSUMER_GROUP,
+    REDIS_HOST,
+    REDIS_PORT,
+    REDIS_DB
 )
 
 from indexing.inverted_index import index_document
@@ -34,6 +37,8 @@ logging.basicConfig(
 )
 
 log = logging.getLogger(__name__)
+
+_redis = redis.Redis(host=REDIS_HOST, port=REDIS_PORT, db=REDIS_DB, decode_responses=True)
 
 _BATCH_SIZE = int(
     os.getenv("INDEXER_BATCH_SIZE", "32")
@@ -57,11 +62,22 @@ def _flush_batch(
     doc_ids = [d["doc_id"] for d in batch]
 
     # Update inverted index (one doc at a time to respect shard locking)
+    # persist raw text so scripts/build_faiss can rebuild FAISS index if needed
+    # Save document metadata and text to Redis.
+    pipe = _redis.pipeline()
     for doc in batch:
-        index_document(
-            doc["doc_id"],
-            doc.get("text", "")
+        pipe.hset(
+            f"doc:{doc['doc_id']}",
+            mapping={
+                "title": doc.get("title", ""),
+                "text": doc.get("text", ""),
+            },
         )
+    pipe.execute()
+
+    # Update the sharded inverted index.
+    for doc in batch:
+        index_document(doc["doc_id"], doc.get("text", ""))
 
     # Update FAISS
     vectors = embed(texts).astype(np.float32)
